@@ -29,7 +29,7 @@ const PDF = () => {
                 <span>
                   <img className="object-contain" src="images/logo.png" alt="Logo" width={100} height={100}/> 
                 </span>
-                <span className="text-sm font-bold p-2">123 Main Street, Dover, NH 03820-4667</span>
+                <span className="text-xs font-extrabold p-2">123 Main Street, Dover, NH 03820-4667</span>
               </div>
 
               {/* Blur Effect */}
@@ -52,10 +52,10 @@ const PDF = () => {
 
               {/* pdf footer */}
               <div className="pdf-footer flex justify-between p-2 mt-6 mb-4 mx-3">
-                <span className='text-blue-600 font-bold text-xs'>
+                <span className='text-blue-600 font-extrabold text-xs'>
                 Report Genereted on September 26, 2023
                 </span>
-                <span className='text-black font-bold text-xs'>
+                <span className='text-black font-extrabold text-xs'>
                 RealAssist Property Report | Page 1 of 25
                 </span>
               </div>
