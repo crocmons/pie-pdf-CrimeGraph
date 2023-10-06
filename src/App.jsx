@@ -4,7 +4,7 @@ import { Button } from '@progress/kendo-react-buttons';
 import { PDFExport } from '@progress/kendo-react-pdf';
 import CrimeGraph from './components/CrimeGraph'; // Import the CrimeGraph component
 
-const App = () => {
+const PDF = () => {
   const pdfExportComponent = useRef(null);
   
   const handleExportWithComponent = () => {
@@ -27,19 +27,41 @@ const App = () => {
             <div className="inner-page">
               <div className='flex justify-between'>
                 <span>
-                  <img className="w-300 h-300 object-contain p-2" src="images/logo.png" alt="Logo" /> 
+                  <img className="object-contain" src="images/logo.png" alt="Logo" width={100} height={100}/> 
                 </span>
                 <span className="text-sm font-bold p-2">123 Main Street, Dover, NH 03820-4667</span>
               </div>
-              <div className="pdf-footer flex justify-between text-sm">
-                <p className='text-blue-600 font-bold'>
-                Report Genereted on September 26, 2023
-                </p>
-                <p className='text-black font-bold'>
-                RealAssist Property Report | Page 1 of 25
-                </p>
+
+              {/* Blur Effect */}
+              <div className='glassmorphism flex justify-center py-5 px-4 my-4'>
+                <button className='blue_gradient px-3 py-1 mx-2 rounded-xl text-white'>Only Focus on Crime Graph</button>
               </div>
-              <div className="pdf-chart">
+              <div className='glassmorphism flex justify-center py-5 px-4 my-4'>
+                <button className='blue_gradient px-3 py-1 mx-2 rounded-xl text-white'>Only Focus on Crime Graph</button>
+              </div>
+              <div className='glassmorphism flex justify-center py-5 px-4 my-4'>
+                <button className='blue_gradient px-3 py-1 mx-2 rounded-xl text-white'>Only Focus on Crime Graph</button>
+              </div>
+
+              <div className='flex flex-row'>
+                <img src="images/location.png" alt="location" className='object-contain' width={16} height={16}/>
+                <span className='font-bold ml-1'>Crime
+                </span>
+              </div>
+                <div className='divide-y divide-blue-700'></div>
+
+              {/* pdf footer */}
+              <div className="pdf-footer flex justify-between p-2 mt-6 mb-4 mx-3">
+                <span className='text-blue-600 font-bold text-xs'>
+                Report Genereted on September 26, 2023
+                </span>
+                <span className='text-black font-bold text-xs'>
+                RealAssist Property Report | Page 1 of 25
+                </span>
+              </div>
+
+              {/* PDF Chart via API Endpoint */}
+              <div className="pdf-chart mb-5">
                 {/* Include the CrimeGraph component here */}
                 <CrimeGraph />
               </div>
@@ -52,4 +74,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default PDF;
