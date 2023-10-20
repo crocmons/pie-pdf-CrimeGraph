@@ -97,7 +97,7 @@ const CrimeGraph = () => {
           plugins: {
             legend: {
               display: true,
-              position: 'bottom',
+              position: 'top',
             },
             tooltip: {
               callbacks: {
