@@ -11,7 +11,7 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
-import { Line } from 'react-chartjs-2';
+import { Pie } from 'react-chartjs-2';
 
 ChartJS.register(
   ArcElement,
@@ -26,15 +26,20 @@ ChartJS.register(
 
 const CrimeGraph = () => {
   const [chartData, setChartData] = useState({
-    labels: "Crime Graph",
+    labels: [],
     datasets: [
       {
-        label: 'Burglary',
+        label: 'Robbery',
         data: [],
-        fill: true,
-        backgroundColor: 'rgba(10, 40, 252, 0.8)',
-        borderColor: 'rgba(10, 40, 252, 0.8)',
-        // borderWidth: 1,
+        backgroundColor: [ // Rainbow colors
+          'red',
+          'orange',
+          'yellow',
+          'green',
+          'blue',
+          'purple',
+          // Add more colors as needed
+        ],
       },
     ],
   });
@@ -49,16 +54,15 @@ const CrimeGraph = () => {
         const { data } = response;
 
         if (data && Array.isArray(data.data)) {
-          // Assuming the data structure matches your expectations
           const labels = data.data.map((crime) => crime.data_year);
-          const burglaryData = data.data.map((crime) => crime.Burglary);
+          const robberyData = data.data.map((crime) => crime.Robbery);
 
           setChartData({
-            labels,
+            labels: labels,
             datasets: [
               {
                 ...chartData.datasets[0],
-                data: burglaryData,
+                data: robberyData,
               },
             ],
           });
@@ -66,27 +70,43 @@ const CrimeGraph = () => {
           console.error('Invalid data format received from the API.');
         }
       } catch (error) {
-        console.error('Error fetching data:', error);
+        console.error('Error fetching the data:', error);
       }
     };
 
     fetchData();
   }, [chartData]);
 
-
+  // Define a callback function to display percentages in tooltips
+  const tooltipCallback = (context) => {
+    const label = context.label || '';
+    const value = context.parsed;
+    const total = context.dataset.data.reduce((a, b) => a + b, 0);
+    const percentage = ((value / total) * 100).toFixed(2) + '%';
+    return `${label}: ${percentage}`;
+  };
 
   return (
-    <div className='flex justify-center font-bold mx-6'>
-      <Line data={chartData} height={400} options={{
-        responsive: true,
-        maintainAspectRatio: false,
-        scales: {},
-        legend: {
-          labels: {
-            fontSize: 20,
+    <div className='flex justify-center font-bold mx-6 mt-1'>
+      <Pie
+        data={chartData}
+        height={350}
+        options={{
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              display: true,
+              position: 'bottom',
+            },
+            tooltip: {
+              callbacks: {
+                label: tooltipCallback,
+              },
+            },
           },
-        },
-      }}  />
+        }}
+      />
     </div>
   );
 };

@@ -27,9 +27,9 @@ const PDF = () => {
             <div className="inner-page">
               <div className='flex justify-between'>
                 <span>
-                  <img className="object-contain" src="images/logo.png" alt="Logo" width={100} height={100}/> 
+                  <h1 className='font-bold'>US-Crime Report</h1> 
                 </span>
-                <span className="text-xs font-extrabold p-2">123 Main Street, Dover, NH 03820-4667</span>
+                <span className="text-xs font-extrabold p-2">Robbery rate in the United States</span>
               </div>
 
               {/* Blur Effect */}
@@ -56,12 +56,12 @@ const PDF = () => {
                 Report Genereted on September 26, 2023
                 </span>
                 <span className='text-black font-extrabold text-xs'>
-                RealAssist Property Report | Page 1 of 25
+                Robbery Report | Page 1 of 25
                 </span>
               </div>
 
               {/* PDF Chart via API Endpoint */}
-              <div className="pdf-chart mb-5">
+              <div className="pdf-chart mb-6">
                 {/* Include the CrimeGraph component here */}
                 <CrimeGraph />
               </div>
